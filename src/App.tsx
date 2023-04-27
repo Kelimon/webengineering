@@ -52,7 +52,7 @@ function App() {
   const faculties = [
     {
       title: "Informatik",
-      image: "../public/Erdbeer-Q.jpeg",
+      image: "/Erdbeer-Q.jpeg",
       description:
         "Informatiker übertragen Vorgänge der realen Welt auf Computersysteme, indem sie die Aufgabenstellung ingeeignete Modelle überführen und diese dann aufSoftwaresystemen abbilden. Die Vielfalt anAnwendungsmöglichkeiten ist dabei nahezu unbegrenzt undsteigt stetig mit der zunehmenden Leistungsfähigkeit derSysteme.",
       width: "50rem",
@@ -60,7 +60,7 @@ function App() {
     },
     {
       title: "Elektrotechnik",
-      image: "../public/Mandarinen-Q.jpeg",
+      image: "/Mandarinen-Q.jpeg",
       description:
         "Die Elektrotechnik bewegt und verändert die Welt: Smartphones, Assistenzsysteme, Smart Home oderMedizintechnik sind aus unserem Leben nicht mehrwegzudenken, die Energiewende ist in aller Munde.Ingenieurinnen und Ingenieure der Elektrotechnikgestalten und entwickeln die Systeme und haben so einendirekten Einfluss auf unser alltägliches Leben. Siebefassen sich nicht nur mit elektrischen undelektronischen Systemen, sondern arbeiten in einem sehrvielfältigen Arbeitsfeld, das von der Entwicklung einesProdukts über das Projektmanagement bis hin zu Marketingund Vertrieb reicht.",
       width: "50rem",
@@ -68,7 +68,7 @@ function App() {
     },
     {
       title: "Maschinenbau",
-      image: "../public/Pizza-Q.jpeg",
+      image: "/Pizza-Q.jpeg",
       description:
         "Der Maschinenbau mit seinen zahlreichen Ausprägungen verknüpft Theorie und Praxis, Naturwissenschaft und Technik. Die umfassende Ausbildung an der Dualen Hochschule Stuttgart ermöglicht es Absolventinnen und Absolventen des Studiengangs, Aufgaben in vielen Tätigkeitsfeldern zu übernehmen:",
       width: "21rem",
@@ -128,7 +128,7 @@ function App() {
       <AppBar position="fixed" style={{ backgroundColor: "black" }}>
         <Toolbar>
           <img
-            src="../public/logodhbw.svg"
+            src="/logodhbw.svg"
             alt="Your logo"
             style={{ width: "20%", height: "auto" }}
           />
@@ -298,6 +298,7 @@ function App() {
         sx={{
           right: "500px",
         }}
+        style={{ width: "90vw" }}
         maxWidth="lg"
         fullWidth
       >
