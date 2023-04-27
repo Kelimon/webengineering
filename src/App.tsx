@@ -339,8 +339,20 @@ function App() {
                   <TableCell sx={{ border: "2px solid rgba(0, 0, 0, 1)" }}>
                     {row.extract}
                   </TableCell>
-                  <TableCell sx={{ border: "2px solid rgba(0, 0, 0, 1)" }}>
-                    {row.link}
+                  <TableCell
+                    sx={{
+                      border: "2px solid rgba(0, 0, 0, 1)",
+                    }}
+                    color="black"
+                  >
+                    <a
+                      href={row.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      style={{ color: "#0c076b" }}
+                    >
+                      {row.link}
+                    </a>
                   </TableCell>
                 </TableRow>
               ))}
