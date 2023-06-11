@@ -1,3 +1,9 @@
+#root {
+  margin: -100;
+  padding: -100;
+}
+
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -28,8 +34,9 @@ body {
   display: flex;
   place-items: center;
   min-width: 320px;
-  min-height: 100vh;
+  min-height: 100%; /* This ensures the body takes up at least the full height of the viewport */
 }
+
 
 h1 {
   font-size: 3.2em;
