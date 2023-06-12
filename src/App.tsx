@@ -36,6 +36,12 @@ import YoutubeVideo from "./components/YoutubeVideo";
 import Faculties from "./components/Faculties";
 import Footer from "./components/Footer"
 import CanvasDialog from "./components/CanvasDialog";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import AuthRoute from "./components/AuthRoute";
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import { Login } from "@mui/icons-material";
+import RegisterPage from "./pages/RegisterPage";
 
 interface WikiPage {
   title: string;
@@ -45,58 +51,26 @@ interface WikiPage {
 }
 
 function App() {
-  const [openFirstDialog, setOpenFirstDialog] = useState(false);
-  const [openSecondDialog, setOpenSecondDialog] = useState(false);
-  const [openThirdDialog, setOpenThirdDialog] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [wikipages, setWikipages] = useState<WikiPage[]>([]);
-  const [openCanvasDialog, setOpenCanvasDialog] = useState(false)
-
-  const CustomDialog = styled(Dialog)({
-    "& .MuiDialog-paper": {
-      width: "80%",
-      maxHeight: "calc(100% - 64px)",
-    },
-  });
-
-  
-
-
-  
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 
   return (
-    <>
-      <Header setOpenFirstDialog={setOpenFirstDialog} />
-      <DiensteDialog setOpenCanvasDialog={setOpenCanvasDialog} setOpenFirstDialog={setOpenFirstDialog} setOpenSecondDialog={setOpenSecondDialog} setOpenThirdDialog={setOpenThirdDialog} setWikipages={setWikipages} setInputValue={setInputValue} openFirstDialog={openFirstDialog} inputValue={inputValue} />
-      <PersonenDialog setOpenSecondDialog={setOpenSecondDialog} openSecondDialog={openSecondDialog}/>
-      <WikipediaDialog openThirdDialog={openThirdDialog} setOpenThirdDialog={setOpenThirdDialog} wikipages={wikipages}/>
-      <CanvasDialog setOpenCanvasDialog={setOpenCanvasDialog} openCanvasDialog={openCanvasDialog}/>
-      <Container
-          component="main"
-          sx={{
-            paddingTop: "150px",
-            backgroundColor: "lightgrey",
-            width: '10000px',  // Add this line
-          }}
-        >
-          <CanvasDialog setOpenCanvasDialog={setOpenCanvasDialog} openCanvasDialog={openCanvasDialog}/>
-        <Grid container spacing={4}>
-        <CanvasDialog setOpenCanvasDialog={setOpenCanvasDialog} openCanvasDialog={openCanvasDialog}/>
-          <YoutubeVideo/>
-          <CanvasDialog setOpenCanvasDialog={setOpenCanvasDialog} openCanvasDialog={openCanvasDialog}/>
-          <Faculties/>
-          
-          <Grid item xs={12}>
-            <Box height={180}></Box>
-          </Grid>
-          
-        </Grid>
-        
-      </Container>
-      
-      <Footer/>
-    </>
+    <BrowserRouter basename="/webengineering">
+            <Routes>
+            <Route
+          path="/home"
+          element={!isLoggedIn ? <HomePage /> : <LoginPage setIsLoggedIn={setIsLoggedIn} />}
+        />
+            <Route
+          path="/login"
+          element={<LoginPage setIsLoggedIn={setIsLoggedIn} />}
+        />
+        <Route
+          path="/register"
+          element={<RegisterPage setIsLoggedIn={setIsLoggedIn} />}
+        />
+            </Routes>
+        </BrowserRouter>
   );
 }
 

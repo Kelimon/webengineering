@@ -11,8 +11,12 @@ interface CanvasDialogProps {
 const CanvasDialog: React.FC<CanvasDialogProps> = ({setOpenCanvasDialog, openCanvasDialog}) => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [clearCanvas, setClearCanvas] = useState<(() => void) | undefined>();
+  const [refresh, setRefresh] = useState(false);
+
 
   useEffect(() => {
+    console.log(refresh)
+    console.log(canvasRef.current)
     const canvas = canvasRef.current;
     if (canvas === null) return;
 
@@ -70,6 +74,7 @@ const CanvasDialog: React.FC<CanvasDialogProps> = ({setOpenCanvasDialog, openCan
     canvas.addEventListener('touchmove', draw);
     canvas.addEventListener('touchend', stopDrawing);
 
+
     // Cleanup function to remove the event listeners when the component unmounts
     return () => {
       canvas.removeEventListener('mousedown', startDrawing);
@@ -80,10 +85,21 @@ const CanvasDialog: React.FC<CanvasDialogProps> = ({setOpenCanvasDialog, openCan
       canvas.removeEventListener('touchmove', draw);
       canvas.removeEventListener('touchend', stopDrawing);
     };
-  }, []);
+  }, [ refresh]);
 
-  //if (!clearCanvas) return null;  // Oder irgendeine andere Loader-Komponente
+  function delayedFunction() {
+    setTimeout(() => {
+      // Code to be executed after the delay
+      setRefresh(true)
+    }, 2000); // Delay of 0.5 seconds (500 milliseconds)
+  }
 
+  if(openCanvasDialog && refresh){
+    delayedFunction();
+  }
+  
+  // Call the function
+  
   return (<>
   <Dialog
         open={openCanvasDialog}
@@ -109,6 +125,11 @@ const CanvasDialog: React.FC<CanvasDialogProps> = ({setOpenCanvasDialog, openCan
           </Button>
           <Button
             onClick={clearCanvas}
+          >
+            Clear
+          </Button>
+          <Button
+            onClick={() => {setRefresh(!refresh)}}
           >
             Clear
           </Button>
